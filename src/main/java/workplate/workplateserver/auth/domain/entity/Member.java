@@ -13,7 +13,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import workplate.workplateserver.auth.domain.UserRole;
-import workplate.workplateserver.auth.domain.dto.request.JoinRequest;
 import workplate.workplateserver.common.BaseEntity;
 
 /**
