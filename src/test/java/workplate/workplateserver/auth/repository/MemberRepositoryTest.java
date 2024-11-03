@@ -70,4 +70,24 @@ class MemberRepositoryTest {
 		assertTrue(memberRepository.existsByUsername("testId"));
 		assertFalse(memberRepository.existsByUsername("testI"));
 	}
+
+	@Test
+	@DisplayName("회원 이름으로 검색하는 테스트")
+	void findByUsernameTest() {
+	    // Given
+		Member member = Member.toEntity("testId", "이름", "pw");
+		memberRepository.save(member);
+
+	    // When
+		memberRepository.findByUsername("testId");
+
+	    // Then
+		Member result = memberRepository.findById(member.getId()).get();
+		assertAll(
+
+				() -> assertEquals(member.getUsername(), result.getUsername()),
+				() -> assertEquals(member.getName(), result.getName()),
+				() -> assertEquals(member.getPassword(), result.getPassword())
+		);
+	}
 }
