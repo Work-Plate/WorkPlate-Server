@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import workplate.workplateserver.auth.domain.dto.request.JoinRequest;
+import workplate.workplateserver.auth.domain.dto.request.MemberDetailRequest;
 import workplate.workplateserver.auth.service.MemberService;
 import workplate.workplateserver.common.ApiResponse;
 
@@ -33,11 +34,11 @@ public class MemberController {
 				.body(ApiResponse.success("회원가입에 성공하였습니다"));
 	}
 
-	// @PostMapping("/member")
-	// public ResponseEntity<ApiResponse<String>> addMemberDetails(@RequestBody JoinRequest joinRequest) {
-	// 	memberService.saveMember(joinRequest);
-	//
-	// 	return ResponseEntity.status(HttpStatus.OK)
-	// 			.body(ApiResponse.success("회원의 상세정보를 입력하였습니다"));
-	// }
+	@PostMapping("/member")
+	public ResponseEntity<ApiResponse<String>> addMemberDetails(@RequestBody MemberDetailRequest request) {
+		memberService.saveDetails(request);
+
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(ApiResponse.success("회원의 상세정보를 입력하였습니다"));
+	}
 }
