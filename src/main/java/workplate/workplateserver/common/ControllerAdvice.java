@@ -2,6 +2,7 @@ package workplate.workplateserver.common;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -24,7 +25,7 @@ public class ControllerAdvice {
 				.body(ApiResponse.failure("관리자에게 문의해주세요."));
 	}
 
-	@ExceptionHandler(IllegalArgumentException.class)
+	@ExceptionHandler({IllegalArgumentException.class, AccessDeniedException.class})
 	public ResponseEntity<ApiResponse<String>> illegalArgument(Exception e) {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body(ApiResponse.failure(e.getMessage()));
