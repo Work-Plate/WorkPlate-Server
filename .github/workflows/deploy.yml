@@ -21,10 +21,6 @@ jobs:
     - name: Set up application.yml
       run: echo "${{ secrets.APPLICATION }}" > ./src/main/resources/application.yml
 
-      # SSL 적용
-    - name: Create SSH Key File
-      run: echo "${{ secrets.PRIVATE_KEY }}" > /tmp/private_key.pem
-
     - name: Set Permissions for SSH Key
       run: chmod 600 /tmp/private_key.pem
 
