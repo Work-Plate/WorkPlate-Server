@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import workplate.workplateserver.auth.domain.dto.request.JoinRequest;
@@ -14,6 +15,8 @@ import workplate.workplateserver.auth.domain.entity.MemberDetail;
 import workplate.workplateserver.auth.repository.MemberDetailRepository;
 import workplate.workplateserver.auth.repository.MemberRepository;
 import workplate.workplateserver.common.CommonService;
+import workplate.workplateserver.credit.domain.entity.Credit;
+import workplate.workplateserver.credit.repository.CreditRepository;
 
 /**
  * 회원 서비스
@@ -27,6 +30,7 @@ public class MemberService {
 
 	private final MemberRepository memberRepository;
 	private final MemberDetailRepository memberDetailRepository;
+	private final CreditRepository creditRepository;
 	private final CommonService commonService;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -45,17 +49,18 @@ public class MemberService {
 	}
 
 	/**
-	 * 회원 상세정보 등록 메서드
+	 * 회원 상세정보 등록 메서드 (상세정보를 등록하면서 크레딧 정보도 생성한다.)
 	 *
 	 * @param request 등록 요청
 	 */
+	@Transactional
 	public void saveDetails(MemberDetailRequest request) {
 		Member member = commonService.findByUsername(request.getUsername(), true);
-
+		Credit credit = Credit.toEntity(member);
 		MemberDetail memberDetail = MemberDetail.toEntity(member, request.getAge(), request.getExperience(),
 				request.getPhysicalStatus(),
 				request.getPreference());
-
 		memberDetailRepository.save(memberDetail);
+		creditRepository.save(credit);
 	}
 }

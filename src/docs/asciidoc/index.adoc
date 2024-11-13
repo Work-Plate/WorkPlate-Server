@@ -43,3 +43,37 @@ operation::restaurant-controller-test/find-detail[snippets="http-response,respon
 operation::restaurant-controller-test/find-detail-fail[snippets="http-request,path-parameters"]
 ==== 응답
 operation::restaurant-controller-test/find-detail-fail[snippets="http-response,response-fields"]
+
+== 크레딧 API (CreditController)
+=== 회원의 크레딧 정보 요청 API
+==== 요청
+operation::credit-controller-test/find-credit-test[snippets="http-request,path-parameters"]
+==== 응답
+operation::credit-controller-test/find-credit-test[snippets="http-response,response-fields"]
+=== 크레딧 증가 API
+==== 요청
+operation::credit-controller-test/plus-credit-test[snippets="http-request,request-fields"]
+==== 응답
+operation::credit-controller-test/plus-credit-test[snippets="http-response,response-fields"]
+=== 크레딧 감소 API
+==== 요청
+operation::credit-controller-test/minus-credit-test[snippets="http-request,request-fields"]
+==== 응답
+operation::credit-controller-test/minus-credit-test[snippets="http-response,response-fields"]
+
+== 소일거리 API (WorkController)
+=== 소일거리 리스트 요청 API
+==== 요청
+operation::work-controller-test/find-all-test[snippets="http-request,query-parameters"]
+==== 응답
+operation::work-controller-test/find-all-test[snippets="http-response,response-fields"]
+=== 소일거리 상세조회 API
+==== 요청
+operation::work-controller-test/find-by-id-test[snippets="http-request,path-parameters"]
+==== 응답
+operation::work-controller-test/find-by-id-test[snippets="http-response,response-fields"]
+=== 소일거리 참가 API
+==== 요청
+operation::work-controller-test/join-work-test[snippets="http-request,request-fields"]
+==== 응답
+operation::work-controller-test/join-work-test[snippets="http-response,response-fields"]

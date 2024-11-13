@@ -23,6 +23,7 @@ import workplate.workplateserver.auth.domain.entity.Member;
 import workplate.workplateserver.auth.repository.MemberDetailRepository;
 import workplate.workplateserver.auth.repository.MemberRepository;
 import workplate.workplateserver.common.CommonService;
+import workplate.workplateserver.credit.repository.CreditRepository;
 
 /**
  * @author : parkjihyeok
@@ -38,6 +39,8 @@ class MemberServiceTest {
 	MemberRepository memberRepository;
 	@Mock
 	MemberDetailRepository memberDetailRepository;
+	@Mock
+	CreditRepository creditRepository;
 	@Mock
 	CommonService commonService;
 	@Mock
