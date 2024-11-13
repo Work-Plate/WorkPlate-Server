@@ -41,9 +41,10 @@ public class CreditService {
 	 * @param balance 증가할 양
 	 */
 	@Transactional
-	public void plusCredit(String username, Long balance) {
+	public CreditResponse plusCredit(String username, Long balance) {
 		Credit credit = getCredit(username);
 		credit.plusBalance(balance);
+		return CreditResponse.toDto(credit);
 	}
 
 	/**
@@ -53,9 +54,10 @@ public class CreditService {
 	 * @param balance 감소할 양
 	 */
 	@Transactional
-	public void minusCredit(String username, Long balance) {
+	public CreditResponse minusCredit(String username, Long balance) {
 		Credit credit = getCredit(username);
 		credit.minusBalance(balance);
+		return CreditResponse.toDto(credit);
 	}
 
 	/**
