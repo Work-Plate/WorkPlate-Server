@@ -34,14 +34,14 @@ public class CreditController {
 	}
 
 	@PatchMapping("/credits/plus")
-	public ApiResponse<String> plusCredit(@RequestBody CreditRequest request) {
-		creditService.plusCredit(request.getUsername(), request.getBalance());
-		return ApiResponse.success(null);
+	public ApiResponse<CreditResponse> plusCredit(@RequestBody CreditRequest request) {
+		CreditResponse response = creditService.plusCredit(request.getUsername(), request.getBalance());
+		return ApiResponse.success(response);
 	}
 
 	@PatchMapping("/credits/minus")
-	public ApiResponse<String> minusCredit(@RequestBody CreditRequest request) {
-		creditService.minusCredit(request.getUsername(), request.getBalance());
-		return ApiResponse.success(null);
+	public ApiResponse<CreditResponse> minusCredit(@RequestBody CreditRequest request) {
+		CreditResponse response = creditService.minusCredit(request.getUsername(), request.getBalance());
+		return ApiResponse.success(response);
 	}
 }
