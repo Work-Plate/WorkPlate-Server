@@ -35,6 +35,12 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    # 도커 이미지 빌드용 환경 세팅 및 도커 이미지 빌드
+    - name: Docker build
+      run: |
+        docker build -t ${{ secrets.DOCKER_IMAGE_NAME }}:latest . # 도커 빌드
+
+
     # 도커 이미지 push
     - name: Push Docker Images
       run: |
