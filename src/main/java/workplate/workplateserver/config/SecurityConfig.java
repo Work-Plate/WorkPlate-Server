@@ -46,12 +46,8 @@ public class SecurityConfig {
 		http
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/", "/api/join", "/api/login").permitAll()
-						// h2 허용
-						.requestMatchers(PathRequest.toH2Console()).permitAll()
 						.anyRequest().authenticated()
-				)
-				// h2 허용
-				.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
+				);
 		http
 				.csrf(AbstractHttpConfigurer::disable)
 				.formLogin(AbstractHttpConfigurer::disable)
