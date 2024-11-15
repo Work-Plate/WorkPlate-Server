@@ -17,12 +17,14 @@ import workplate.workplateserver.restaurant.domain.entity.Restaurant;
 @Builder
 public class RestaurantResponse {
 
+	private Long id;
 	private String name;
 	private RestaurantType restaurantType;
 	private String location;
 
 	public static RestaurantResponse toDto(Restaurant restaurant) {
 		return RestaurantResponse.builder()
+				.id(restaurant.getId())
 				.name(restaurant.getName())
 				.restaurantType(restaurant.getRestaurantType())
 				.location(restaurant.getLocation())
