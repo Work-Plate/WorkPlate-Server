@@ -57,9 +57,7 @@ public class MemberService {
 	public void saveDetails(MemberDetailRequest request) {
 		Member member = commonService.findByUsername(request.getUsername(), true);
 		Credit credit = Credit.toEntity(member);
-		MemberDetail memberDetail = MemberDetail.toEntity(member, request.getAge(), request.getExperience(),
-				request.getPhysicalStatus(),
-				request.getPreference());
+		MemberDetail memberDetail = MemberDetail.toEntity(member, request);
 		memberDetailRepository.save(memberDetail);
 		creditRepository.save(credit);
 	}

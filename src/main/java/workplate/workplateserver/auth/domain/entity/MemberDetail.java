@@ -14,9 +14,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import workplate.workplateserver.auth.domain.Experience;
+import workplate.workplateserver.auth.domain.MainExperience;
 import workplate.workplateserver.auth.domain.PhysicalStatus;
-import workplate.workplateserver.auth.domain.Preference;
+import workplate.workplateserver.auth.domain.SubExperience;
+import workplate.workplateserver.auth.domain.dto.request.MemberDetailRequest;
 import workplate.workplateserver.common.BaseEntity;
 
 /**
@@ -43,21 +44,25 @@ public class MemberDetail extends BaseEntity {
 	private int age;
 
 	@Enumerated(value = EnumType.STRING)
-	private Experience experience;
+	private MainExperience mainExperience;
+	@Enumerated(value = EnumType.STRING)
+	private SubExperience subExperience;
+	@Enumerated(value = EnumType.STRING)
+	private MainExperience mainPreference;
+	@Enumerated(value = EnumType.STRING)
+	private SubExperience subPreference;
 	@Enumerated(value = EnumType.STRING)
 	private PhysicalStatus physicalStatus;
-	@Enumerated(value = EnumType.STRING)
-	private Preference preference;
 
-	public static MemberDetail toEntity(Member member, int age, Experience experience, PhysicalStatus physicalStatus,
-			Preference preference) {
+	public static MemberDetail toEntity(Member member, MemberDetailRequest request) {
 
 		return MemberDetail.builder()
 				.member(member)
-				.age(age)
-				.experience(experience)
-				.physicalStatus(physicalStatus)
-				.preference(preference)
+				.age(request.getAge())
+				.mainPreference(request.getMainPreference())
+				.subExperience(request.getSubExperience())
+				.subPreference(request.getSubPreference())
+				.physicalStatus(request.getPhysicalStatus())
 				.build();
 	}
 }

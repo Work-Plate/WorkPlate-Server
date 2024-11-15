@@ -24,9 +24,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.google.gson.Gson;
 
-import workplate.workplateserver.auth.domain.Experience;
+import workplate.workplateserver.auth.domain.MainExperience;
 import workplate.workplateserver.auth.domain.PhysicalStatus;
-import workplate.workplateserver.auth.domain.Preference;
+import workplate.workplateserver.auth.domain.SubExperience;
 import workplate.workplateserver.auth.domain.dto.request.JoinRequest;
 import workplate.workplateserver.auth.domain.dto.request.MemberDetailRequest;
 import workplate.workplateserver.auth.domain.jwt.JwtTokenProvider;
@@ -141,7 +141,9 @@ class MemberControllerTest {
 	@WithMockUser
 	void addDetailTest() throws Exception {
 		// Given
-		MemberDetailRequest request = new MemberDetailRequest("testId", 70, Experience.TEST, PhysicalStatus.TEST, Preference.TEST);
+		MemberDetailRequest request = new MemberDetailRequest("testId", 70, MainExperience.OFFICE_ACCOUNTING_IT,
+				SubExperience.ACCOUNTING_FINANCE, MainExperience.OFFICE_ACCOUNTING_IT, SubExperience.ACCOUNTING_FINANCE,
+				PhysicalStatus.NORMAL);
 
 		// When
 		mockMvc.perform(post("/api/member")
@@ -163,9 +165,11 @@ class MemberControllerTest {
 						requestFields(
 								fieldWithPath("username").description("가입한 아이디"),
 								fieldWithPath("age").description("나이"),
-								fieldWithPath("experience").description("일 경험"),
-								fieldWithPath("physicalStatus").description("건강 상태"),
-								fieldWithPath("preference").description("선호 직종")
+								fieldWithPath("mainExperience").description("일 경험 (대분류)"),
+								fieldWithPath("subExperience").description("일 경험 (소분류)"),
+								fieldWithPath("mainPreference").description("선호 직종 (대분류)"),
+								fieldWithPath("subPreference").description("선호 직종 (소분류)"),
+								fieldWithPath("physicalStatus").description("건강 상태")
 						),
 						responseFields(
 								fieldWithPath("success").description("성공여부"),
@@ -181,7 +185,9 @@ class MemberControllerTest {
 	@WithMockUser
 	void addDetailFailTest() throws Exception {
 		// Given
-		MemberDetailRequest request = new MemberDetailRequest("testId", 70, Experience.TEST, PhysicalStatus.TEST, Preference.TEST);
+		MemberDetailRequest request = new MemberDetailRequest("testId", 70, MainExperience.OFFICE_ACCOUNTING_IT,
+				SubExperience.ACCOUNTING_FINANCE, MainExperience.OFFICE_ACCOUNTING_IT, SubExperience.ACCOUNTING_FINANCE,
+				PhysicalStatus.NORMAL);
 		doThrow(new UsernameNotFoundException("회원정보를 찾을 수 없습니다.")).when(memberService).saveDetails(any());
 
 		// When
@@ -204,9 +210,11 @@ class MemberControllerTest {
 						requestFields(
 								fieldWithPath("username").description("가입한 아이디"),
 								fieldWithPath("age").description("나이"),
-								fieldWithPath("experience").description("일 경험"),
-								fieldWithPath("physicalStatus").description("건강 상태"),
-								fieldWithPath("preference").description("선호 직종")
+								fieldWithPath("mainExperience").description("일 경험 (대분류)"),
+								fieldWithPath("subExperience").description("일 경험 (소분류)"),
+								fieldWithPath("mainPreference").description("선호 직종 (대분류)"),
+								fieldWithPath("subPreference").description("선호 직종 (소분류)"),
+								fieldWithPath("physicalStatus").description("건강 상태")
 						),
 						responseFields(
 								fieldWithPath("success").description("성공여부"),
