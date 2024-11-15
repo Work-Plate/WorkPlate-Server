@@ -67,9 +67,9 @@ class RestaurantControllerTest {
 	void findAllByPage() throws Exception {
 		// Given
 		Pageable pageable = PageRequest.of(1, 3);
-		RestaurantResponse r1 = new RestaurantResponse("가식당", RestaurantType.KOREAN_FOOD, "서울");
-		RestaurantResponse r2 = new RestaurantResponse("나식당", RestaurantType.WESTERN_FOOD, "부산");
-		RestaurantResponse r3 = new RestaurantResponse("다식당", RestaurantType.JAPANESE_FOOD, "울산");
+		RestaurantResponse r1 = new RestaurantResponse(1L, "가식당", RestaurantType.KOREAN_FOOD, "서울");
+		RestaurantResponse r2 = new RestaurantResponse(2L, "나식당", RestaurantType.WESTERN_FOOD, "부산");
+		RestaurantResponse r3 = new RestaurantResponse(3L, "다식당", RestaurantType.JAPANESE_FOOD, "울산");
 		PageResponse<RestaurantResponse> response = new PageResponse<>(List.of(r1, r2, r3));
 		given(restaurantService.findRestaurant(any())).willReturn(response);
 
@@ -92,6 +92,7 @@ class RestaurantControllerTest {
 								fieldWithPath("success").description("성공여부"),
 								fieldWithPath("message").description("응답 메시지"),
 								fieldWithPath("data").description("처리 결과"),
+								fieldWithPath("data.content[].id").description("식당 ID값"),
 								fieldWithPath("data.content[].name").description("식당 이름"),
 								fieldWithPath("data.content[].restaurantType").description(
 										"식당 종류 (KOREAN_FOOD, WESTERN_FOOD, JAPANESE_FOOD 등)"),
