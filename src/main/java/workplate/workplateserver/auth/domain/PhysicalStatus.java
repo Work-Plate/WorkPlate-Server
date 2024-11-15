@@ -12,7 +12,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum PhysicalStatus {
-	// TODO: 2024/11/3 타입에 맞게 추가하기
-	TEST("테스트용");
+	NORMAL("정상"),
+	PRE_FRAIL("노쇠 전"),
+	FRAIL("노쇠");
 	private final String physicalStatus;
 }
