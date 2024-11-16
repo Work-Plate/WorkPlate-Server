@@ -29,6 +29,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.google.gson.Gson;
 
+import workplate.workplateserver.auth.domain.MainExperience;
+import workplate.workplateserver.auth.domain.SubExperience;
 import workplate.workplateserver.auth.domain.entity.Member;
 import workplate.workplateserver.auth.domain.jwt.JwtTokenProvider;
 import workplate.workplateserver.auth.domain.jwt.repository.JwtAccessTokenRepository;
@@ -74,9 +76,9 @@ class WorkControllerTest {
 	@WithMockUser
 	void findAllTest() throws Exception {
 		// Given
-		WorkResponse r1 = new WorkResponse("경비", "병원을 경비합니다.", 10000L);
-		WorkResponse r2 = new WorkResponse("주간경비", "병원을 주간에 경비합니다.", 11000L);
-		WorkResponse r3 = new WorkResponse("야간경비", "병원을 야간에 경비합니다.", 12000L);
+		WorkResponse r1 = new WorkResponse("경비", "병원을 경비합니다.", 10000L, MainExperience.SERVICE, SubExperience.SECURITY_GUARD);
+		WorkResponse r2 = new WorkResponse("주간경비", "병원을 주간에 경비합니다.", 11000L, MainExperience.SERVICE, SubExperience.SECURITY_GUARD);
+		WorkResponse r3 = new WorkResponse("야간경비", "병원을 야간에 경비합니다.", 12000L, MainExperience.SERVICE, SubExperience.SECURITY_GUARD);
 		PageResponse<WorkResponse> response = new PageResponse<>(List.of(r1, r2, r3));
 		given(workService.findAll(any())).willReturn(response);
 
@@ -102,6 +104,8 @@ class WorkControllerTest {
 								fieldWithPath("data.content[].workName").description("소일거리 이름"),
 								fieldWithPath("data.content[].workDetail").description("소일거리 상세 내용"),
 								fieldWithPath("data.content[].workCredit").description("소일거리 시급"),
+								fieldWithPath("data.content[].mainCategory").description("소일거리 메인카테고리"),
+								fieldWithPath("data.content[].subCategory").description("소일거리 서브카테고리"),
 								fieldWithPath("data.pageNum").description("현재 페이지 번호"),
 								fieldWithPath("data.pageSize").description("페이지 당 항목 수"),
 								fieldWithPath("data.totalPages").description("총 페이지 수"),
@@ -117,7 +121,7 @@ class WorkControllerTest {
 	@WithMockUser
 	void findByIdTest() throws Exception {
 		// Given
-		WorkResponse r1 = new WorkResponse("경비", "병원을 경비합니다.", 10000L);
+		WorkResponse r1 = new WorkResponse("경비", "병원을 경비합니다.", 10000L, MainExperience.SERVICE, SubExperience.SECURITY_GUARD);
 		given(workService.findById(1L)).willReturn(r1);
 
 		// When
@@ -140,7 +144,9 @@ class WorkControllerTest {
 								fieldWithPath("data").description("처리 결과"),
 								fieldWithPath("data.workName").description("소일거리 이름"),
 								fieldWithPath("data.workDetail").description("소일거리 상세 내용"),
-								fieldWithPath("data.workCredit").description("소일거리 시급")
+								fieldWithPath("data.workCredit").description("소일거리 시급"),
+								fieldWithPath("data.mainCategory").description("소일거리 메인카테고리"),
+								fieldWithPath("data.subCategory").description("소일거리 서브카테고리")
 						)));
 		// Then
 	}
