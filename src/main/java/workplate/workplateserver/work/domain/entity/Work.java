@@ -2,6 +2,8 @@ package workplate.workplateserver.work.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -10,6 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import workplate.workplateserver.auth.domain.MainExperience;
+import workplate.workplateserver.auth.domain.SubExperience;
 import workplate.workplateserver.common.BaseEntity;
 
 /**
@@ -35,12 +39,21 @@ public class Work extends BaseEntity {
 	private String workDetail;
 	@Column(name = "work_credit")
 	private Long workCredit;
+	@Column(name = "work_main_category")
+	@Enumerated(EnumType.STRING)
+	private MainExperience mainCategory;
+	@Column(name = "work_sub_category")
+	@Enumerated(EnumType.STRING)
+	private SubExperience subCategory;
 
-	public static Work toEntity(String workName, String workDetail, Long workCredit) {
+	public static Work toEntity(String workName, String workDetail, Long workCredit, MainExperience mainCategory,
+			SubExperience subCategory) {
 		return Work.builder()
 				.workName(workName)
 				.workDetail(workDetail)
 				.workCredit(workCredit)
+				.mainCategory(mainCategory)
+				.subCategory(subCategory)
 				.build();
 	}
 }

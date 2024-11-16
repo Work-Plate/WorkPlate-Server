@@ -3,6 +3,8 @@ package workplate.workplateserver.work.domain.dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import workplate.workplateserver.auth.domain.MainExperience;
+import workplate.workplateserver.auth.domain.SubExperience;
 import workplate.workplateserver.work.domain.entity.Work;
 
 /**
@@ -19,12 +21,16 @@ public class WorkResponse {
 	private String workName;
 	private String workDetail;
 	private Long workCredit;
+	private MainExperience mainCategory;
+	private SubExperience subCategory;
 
 	public static WorkResponse toDto(Work work) {
 		return WorkResponse.builder()
 				.workName(work.getWorkName())
 				.workDetail(work.getWorkDetail())
 				.workCredit(work.getWorkCredit())
+				.mainCategory(work.getMainCategory())
+				.subCategory(work.getSubCategory())
 				.build();
 	}
 }
