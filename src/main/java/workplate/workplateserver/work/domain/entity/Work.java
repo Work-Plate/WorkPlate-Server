@@ -13,6 +13,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import workplate.workplateserver.auth.domain.MainExperience;
+import workplate.workplateserver.auth.domain.PhysicalStatus;
 import workplate.workplateserver.auth.domain.SubExperience;
 import workplate.workplateserver.common.BaseEntity;
 
@@ -39,21 +40,27 @@ public class Work extends BaseEntity {
 	private String workDetail;
 	@Column(name = "work_credit")
 	private Long workCredit;
-	@Column(name = "work_main_category")
+	private String location;
+	@Column(name = "main_category")
 	@Enumerated(EnumType.STRING)
 	private MainExperience mainCategory;
-	@Column(name = "work_sub_category")
+	@Column(name = "sub_category")
 	@Enumerated(EnumType.STRING)
 	private SubExperience subCategory;
+	@Column(name = "physical_status")
+	@Enumerated(EnumType.STRING)
+	private PhysicalStatus physicalStatus;
 
-	public static Work toEntity(String workName, String workDetail, Long workCredit, MainExperience mainCategory,
-			SubExperience subCategory) {
+	public static Work toEntity(String workName, String workDetail, Long workCredit, String location,
+			MainExperience mainCategory, SubExperience subCategory, PhysicalStatus physicalStatus) {
 		return Work.builder()
 				.workName(workName)
 				.workDetail(workDetail)
 				.workCredit(workCredit)
+				.location(location)
 				.mainCategory(mainCategory)
 				.subCategory(subCategory)
+				.physicalStatus(physicalStatus)
 				.build();
 	}
 }
