@@ -20,6 +20,7 @@ public class MemberDetailRequest {
 
 	private String username;
 	private int age;
+	private String location;
 	private MainExperience mainExperience;
 	private SubExperience subExperience;
 	private MainExperience mainPreference;

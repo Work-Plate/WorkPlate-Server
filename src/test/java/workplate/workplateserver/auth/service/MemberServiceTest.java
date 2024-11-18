@@ -79,7 +79,7 @@ class MemberServiceTest {
 	@DisplayName("회원 상세정보 저장 테스트")
 	void saveDetailsTest() {
 	    // Given
-		MemberDetailRequest memberDetailRequest = new MemberDetailRequest("testId", 70, MainExperience.OFFICE_ACCOUNTING_IT,
+		MemberDetailRequest memberDetailRequest = new MemberDetailRequest("testId", 70, "서울", MainExperience.OFFICE_ACCOUNTING_IT,
 				SubExperience.ACCOUNTING_FINANCE, MainExperience.OFFICE_ACCOUNTING_IT, SubExperience.ACCOUNTING_FINANCE,
 				PhysicalStatus.NORMAL);
 		Member m = Member.toEntity("testId", "name", "pw");
@@ -97,7 +97,7 @@ class MemberServiceTest {
 	@DisplayName("회원 상세정보 저장 실패 테스트")
 	void saveDetailsFailTest() {
 		// Given
-		MemberDetailRequest memberDetailRequest = new MemberDetailRequest("testId", 70, MainExperience.OFFICE_ACCOUNTING_IT,
+		MemberDetailRequest memberDetailRequest = new MemberDetailRequest("testId", 70, "서울", MainExperience.OFFICE_ACCOUNTING_IT,
 				SubExperience.ACCOUNTING_FINANCE, MainExperience.OFFICE_ACCOUNTING_IT, SubExperience.ACCOUNTING_FINANCE,
 				PhysicalStatus.NORMAL);
 		Member m = Member.toEntity("testId", "name", "pw");

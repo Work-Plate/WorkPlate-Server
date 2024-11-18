@@ -42,6 +42,7 @@ public class MemberDetail extends BaseEntity {
 	private Member member;
 
 	private int age;
+	private String location;
 
 	@Enumerated(value = EnumType.STRING)
 	private MainExperience mainExperience;
@@ -59,6 +60,7 @@ public class MemberDetail extends BaseEntity {
 		return MemberDetail.builder()
 				.member(member)
 				.age(request.getAge())
+				.location(request.getLocation())
 				.mainPreference(request.getMainPreference())
 				.subExperience(request.getSubExperience())
 				.subPreference(request.getSubPreference())
