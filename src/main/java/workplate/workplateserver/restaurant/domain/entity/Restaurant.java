@@ -30,7 +30,6 @@ public class Restaurant extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "restaurant_id")
 	private Long id;
 	@Column(name = "restaurant_name")
 	private String name;
