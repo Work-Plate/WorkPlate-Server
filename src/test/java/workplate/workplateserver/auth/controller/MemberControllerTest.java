@@ -141,7 +141,7 @@ class MemberControllerTest {
 	@WithMockUser
 	void addDetailTest() throws Exception {
 		// Given
-		MemberDetailRequest request = new MemberDetailRequest("testId", 70, MainExperience.OFFICE_ACCOUNTING_IT,
+		MemberDetailRequest request = new MemberDetailRequest("testId", 70, "서울", MainExperience.OFFICE_ACCOUNTING_IT,
 				SubExperience.ACCOUNTING_FINANCE, MainExperience.OFFICE_ACCOUNTING_IT, SubExperience.ACCOUNTING_FINANCE,
 				PhysicalStatus.NORMAL);
 
@@ -165,6 +165,7 @@ class MemberControllerTest {
 						requestFields(
 								fieldWithPath("username").description("가입한 아이디"),
 								fieldWithPath("age").description("나이"),
+								fieldWithPath("location").description("사는 곳"),
 								fieldWithPath("mainExperience").description("일 경험 (대분류)"),
 								fieldWithPath("subExperience").description("일 경험 (소분류)"),
 								fieldWithPath("mainPreference").description("선호 직종 (대분류)"),
@@ -185,7 +186,7 @@ class MemberControllerTest {
 	@WithMockUser
 	void addDetailFailTest() throws Exception {
 		// Given
-		MemberDetailRequest request = new MemberDetailRequest("testId", 70, MainExperience.OFFICE_ACCOUNTING_IT,
+		MemberDetailRequest request = new MemberDetailRequest("testId", 70, "서울", MainExperience.OFFICE_ACCOUNTING_IT,
 				SubExperience.ACCOUNTING_FINANCE, MainExperience.OFFICE_ACCOUNTING_IT, SubExperience.ACCOUNTING_FINANCE,
 				PhysicalStatus.NORMAL);
 		doThrow(new UsernameNotFoundException("회원정보를 찾을 수 없습니다.")).when(memberService).saveDetails(any());
@@ -210,6 +211,7 @@ class MemberControllerTest {
 						requestFields(
 								fieldWithPath("username").description("가입한 아이디"),
 								fieldWithPath("age").description("나이"),
+								fieldWithPath("location").description("사는 곳"),
 								fieldWithPath("mainExperience").description("일 경험 (대분류)"),
 								fieldWithPath("subExperience").description("일 경험 (소분류)"),
 								fieldWithPath("mainPreference").description("선호 직종 (대분류)"),

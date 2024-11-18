@@ -37,7 +37,7 @@ class MemberDetailRepositoryTest {
 	@DisplayName("회원 상세정보 저장 테스트")
 	void saveTest() {
 		// Given
-		MemberDetailRequest request = new MemberDetailRequest("testId", 70, MainExperience.OFFICE_ACCOUNTING_IT,
+		MemberDetailRequest request = new MemberDetailRequest("testId", 70, "서울", MainExperience.OFFICE_ACCOUNTING_IT,
 				SubExperience.ACCOUNTING_FINANCE, MainExperience.OFFICE_ACCOUNTING_IT, SubExperience.ACCOUNTING_FINANCE,
 				PhysicalStatus.NORMAL);
 		MemberDetail md = MemberDetail.toEntity(member, request);
@@ -59,7 +59,7 @@ class MemberDetailRepositoryTest {
 	@DisplayName("회원 상세정보 삭제 테스트")
 	void deleteTest() {
 		// Given
-		MemberDetailRequest request = new MemberDetailRequest("testId", 70, MainExperience.OFFICE_ACCOUNTING_IT,
+		MemberDetailRequest request = new MemberDetailRequest("testId", 70,  "서울", MainExperience.OFFICE_ACCOUNTING_IT,
 				SubExperience.ACCOUNTING_FINANCE, MainExperience.OFFICE_ACCOUNTING_IT, SubExperience.ACCOUNTING_FINANCE,
 				PhysicalStatus.NORMAL);
 		MemberDetail md = MemberDetail.toEntity(member, request);
