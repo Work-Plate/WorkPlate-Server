@@ -46,10 +46,11 @@ public class SecurityConfig {
 		http
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/", "/api/join", "/api/login").permitAll()
-						.anyRequest().authenticated()
+						.anyRequest().permitAll()
 				);
 		http
 				.csrf(AbstractHttpConfigurer::disable)
+				.cors(AbstractHttpConfigurer::disable)
 				.formLogin(AbstractHttpConfigurer::disable)
 				.httpBasic(AbstractHttpConfigurer::disable)
 				.addFilterAt(loginFilter(), UsernamePasswordAuthenticationFilter.class) // 로그인 필터 변경
