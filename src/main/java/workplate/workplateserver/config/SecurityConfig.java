@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfigurationSource;
 
 import lombok.RequiredArgsConstructor;
 import workplate.workplateserver.auth.domain.filter.LoginFilter;
@@ -30,7 +29,6 @@ public class SecurityConfig {
 	private final AuthenticationConfiguration authenticationConfiguration;
 	private final LoginSuccessHandler loginSuccessHandler;
 	private final JwtFilter jwtFilter;
-	private final CorsConfigurationSource corsConfigurationSource;
 
 	@Bean
 	public LoginFilter loginFilter() throws Exception {
@@ -50,7 +48,7 @@ public class SecurityConfig {
 				);
 		http
 				.csrf(AbstractHttpConfigurer::disable)
-				.cors(cors -> cors.configurationSource(corsConfigurationSource))
+				.cors(AbstractHttpConfigurer::disable)
 				.formLogin(AbstractHttpConfigurer::disable)
 				.httpBasic(AbstractHttpConfigurer::disable)
 				.addFilterAt(loginFilter(), UsernamePasswordAuthenticationFilter.class) // 로그인 필터 변경
