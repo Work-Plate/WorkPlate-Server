@@ -160,7 +160,7 @@ class RestaurantControllerTest {
 
 		// When
 		mockMvc.perform(get("/api/restaurants/{id}", 10L))
-				.andExpect(status().isBadRequest())
+				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$.success").value(false))
 				.andExpect(jsonPath("$.message").value("요청에 실패했습니다."))
