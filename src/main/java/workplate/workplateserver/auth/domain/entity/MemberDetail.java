@@ -62,8 +62,9 @@ public class MemberDetail extends BaseEntity {
 				.age(request.getAge())
 				.location(request.getLocation())
 				.mainPreference(request.getMainPreference())
-				.subExperience(request.getSubExperience())
 				.subPreference(request.getSubPreference())
+				.mainExperience(request.getMainExperience())
+				.subExperience(request.getSubExperience())
 				.physicalStatus(request.getPhysicalStatus())
 				.build();
 	}
